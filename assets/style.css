@@ -5,6 +5,7 @@ header {
     text-align: center;
 }
 
-body {
-    
+#search {
+    padding: 10px;
+    background-color: #F8F9FA;
 }
