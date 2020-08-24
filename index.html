@@ -13,6 +13,9 @@
         <!-- 8-23-20 ... jQuery - Google CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+        <!-- 8-24-20 ... Font Awesome - Kit (74ff33f068) Code -->
+        <script src="https://kit.fontawesome.com/74ff33f068.js" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="./assets/style.css" />
         <title>Weather Dashboard</title>
     </head>
@@ -24,12 +27,12 @@
 
         <div class="container">
             <div class="row">
-                <div id="search-col" class="col-sm-4">
+                <div id="search-col" class="col-sm-3">
                     <h5>Search for a City:</h5>
                     <nav class="navbar navbar-light bg-light">
                         <form id="search-city-form" class="form-inline">
-                            <input id="city-name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                            <input id="city-name" class="form-control mr-sm-2" type="search" aria-label="Search">
+                            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                         </form>
                     </nav>
                     <ul class="list-group">
@@ -38,10 +41,10 @@
                         <li class="list-group-item">New York</li>
                     </ul>
                 </div>
-                <div id="results-col" class="col-sm-8">
-                    <div class="card">
+                <div id="results-col" class="col-sm-9">
+                    <div id="results-card" class="card">
                         <div class="card-body">
-                            <h4 class="card-title"></h4>
+                            <h4 class="card-title">City</h4>
                             <ul class="list-group list-group-flush">
                                 <li id="temperature" class="list-group-item">Temperature:</li>
                                 <li id="humidity" class="list-group-item">Humidity:</li>

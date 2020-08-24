@@ -6,6 +6,23 @@ header {
 }
 
 #search-col {
-    padding: 10px;
+    padding: 15px;
     background-color: #F8F9FA;
+}
+
+.navbar {
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+#city-name {
+    margin-right: 0 !important;
+}
+
+#results-col {
+    padding: 15px;
+}
+
+#results-card {
+    margin-bottom: 15px;
 }
