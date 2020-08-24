@@ -27,3 +27,7 @@ header {
 #results-card {
     margin-bottom: 15px;
 }
+
+#forecast-card {
+    width: auto;
+}
