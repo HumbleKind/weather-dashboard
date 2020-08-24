@@ -16,8 +16,8 @@ function getWeather(cityName) {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        $("#temperature").append(" " + response.main.temp);
-        $("#humidity").append(" " + response.main.humidity);
-        $("#wind-speed").append(" " + response.wind.speed);
+        $("#temperature").append(" " + (((response.main.temp - 273.15) * 1.8) + 32) + " ℉");
+        $("#humidity").append(" " + response.main.humidity + "%");
+        $("#wind-speed").append(" " + response.wind.speed + " MPH");
     });
 }
