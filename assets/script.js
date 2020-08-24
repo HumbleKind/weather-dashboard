@@ -5,6 +5,8 @@ citySearch.on("submit", function(event) {
     event.preventDefault();
     var cityName = $("#city-name").val();
     getWeather(cityName);
+    
+    $("#search-list").prepend($("<li>").addClass("list-group-item").text(cityName));
 });
 
 function getWeather(cityName) {
@@ -17,8 +19,8 @@ function getWeather(cityName) {
     }).then(function(response) {
         console.log(response);
         $(".card-title").text(response.name + " " + "(" + (new Date()).toLocaleDateString('en-US') + ")");
-        $("#temperature").append(" " + (((response.main.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
-        $("#humidity").append(" " + response.main.humidity + "%");
-        $("#wind-speed").append(" " + response.wind.speed + " MPH");
+        $("#temperature").text("Temperature: " + (((response.main.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
+        $("#humidity").text("Humidity: " + response.main.humidity + "%");
+        $("#wind-speed").text("Wind Speed: " + response.wind.speed + " MPH");
     });
 }
