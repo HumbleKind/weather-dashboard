@@ -15,8 +15,9 @@ function getWeather(cityName) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
-        $("#temperature").append(" " + (((response.main.temp - 273.15) * 1.8) + 32) + " ℉");
+        console.log(response.main.temp - 273.15);
+        $(".card-title").append(response.name + " " + "(" + (new Date()).toLocaleDateString('en-US') + ")");
+        $("#temperature").append(" " + (((response.main.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
         $("#humidity").append(" " + response.main.humidity + "%");
         $("#wind-speed").append(" " + response.wind.speed + " MPH");
     });
