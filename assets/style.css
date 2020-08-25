@@ -28,6 +28,10 @@ header {
     margin-bottom: 15px;
 }
 
+#forecast {
+    margin-left: 0 !important;
+}
+
 #forecast-col {
     padding-left: 0 !important;
 }

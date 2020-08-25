@@ -14,6 +14,7 @@ citySearch.on("submit", function(event) {
     $("#search-history").prepend($("<li>").addClass("list-group-item").text(cityName));
 
     $("#city-name").val("");
+    $("#forecast-row").empty();
 });
 
 function getWeather(cityName) {
