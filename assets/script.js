@@ -12,6 +12,8 @@ citySearch.on("submit", function(event) {
     
     // adds searched city name to the top of the history list
     $("#search-history").prepend($("<li>").addClass("list-group-item").text(cityName));
+
+    $("#city-name").val("");
 });
 
 function getWeather(cityName) {
@@ -30,27 +32,47 @@ function getWeather(cityName) {
             url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "&exclude={part}&appid=87f01c7c0ae95c2907ec5b879ab8afaa",
             method: "GET"
         }).then(function(response) {
-            console.log(response);
 
-        // current date in mm/dd/yyyy format
-        var currentDate = (new Date()).toLocaleDateString('en-US');
+            // current date in mm/dd/yyyy format
+            var currentDate = (new Date()).toLocaleDateString('en-US');
 
-        // current weather icon
-        var weatherIcon = "http://openweathermap.org/img/wn/" + response.current.weather[0].icon + ".png";
+            // current weather icon
+            var weatherIcon = "http://openweathermap.org/img/wn/" + response.current.weather[0].icon + ".png";
 
-        // search results - city name, date, weather icon
-        $("#card-title-city").text(cityName + " " + "(" + currentDate + ")").append("<img src=" + weatherIcon + " />");
+            // search results - city name, date, weather icon
+            $("#card-title-city").text(cityName + " " + "(" + currentDate + ")").append("<img src=" + weatherIcon + " />");
 
-        // current weather results - temperature, humidity, wind speed, UV index
-        $("#current-temperature").text("Temperature: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
-        $("#current-humidity").text("Humidity: " + response.current.humidity + "%");
-        $("#current-wind-speed").text("Wind Speed: " + response.current.wind_speed + " MPH");
-        $("#current-uv-index").text("UV Index: " + response.current.uvi);
+            // current weather results - temperature, humidity, wind speed, UV index
+            $("#current-temperature").text("Temperature: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
+            $("#current-humidity").text("Humidity: " + response.current.humidity + "%");
+            $("#current-wind-speed").text("Wind Speed: " + response.current.wind_speed + " MPH");
+            $("#current-uv-index").text("UV Index: " + response.current.uvi);
         
-        // 5-day forecast results - date, weather icon, temperature, humidity
-        $("#card-title-date").text(currentDate).append("<img src=" + weatherIcon + " />");
-        $("#temperature").text("Temperature: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
-        $("#humidity").text("Humidity: " + response.current.humidity + "%");
+            // 5-day forecast results - date, weather icon, temperature, humidity
+            for (var i = 1; i < 6; i++) {
+
+                var forecastDate = $("<h5>").attr("id", "card-title-date-" + [i]).addClass("card-title").text("Date");
+                var forecastTemp = $("<p>").attr("id", "temperature").text("Temp:");
+                var forecastHumidity = $("<p>").attr("id", "humidity").text("Humidity:");
+
+                var forecastCardBody = $("<div>").addClass("card-body");
+                forecastCardBody.append(forecastDate, forecastTemp, forecastHumidity);
+
+                var forecastCard = $("<div>").attr("id", "forecast-card").addClass("card text-white bg-primary mb-3").attr("style", "max-width: 10rem;");
+                forecastCard.append(forecastCardBody);
+
+                var forecastCol = $("<div>").attr("id", "forecast-col").addClass("col-auto mb-3");
+                forecastCol.append(forecastCard);
+
+                $("#forecast-row").append(forecastCol);
+
+                var forecastDateValue = (new Date((response.daily[i].dt)*1000)).toLocaleDateString('en-US');
+                $("#card-title-date-" + [i]).text(forecastDateValue);
+                
+                // $("#card-title-date").text(currentDate).append("<img src=" + weatherIcon + " />");
+                // $("#temperature").text("Temp: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
+                // $("#humidity").text("Humidity: " + response.current.humidity + "%");
+            }
 
         });
 

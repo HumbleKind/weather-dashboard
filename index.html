@@ -28,7 +28,7 @@
 
         <div class="container">
             <div class="row">
-                <div id="search-col" class="col-sm-3">
+                <div id="search-col" class="col-md-3">
                     <h5>Search for a City:</h5>
                     <nav class="navbar navbar-light bg-light">
                         <form id="search-city-form" class="form-inline">
@@ -38,7 +38,7 @@
                     </nav>
                     <ul id="search-history" class="list-group"></ul>
                 </div>
-                <div id="results-col" class="col-sm-9">
+                <div id="results-col" class="col-md-9">
                     <div id="results-card" class="card">
                         <div class="card-body">
                             <h4 id="card-title-city" class="card-title">City</h4>
@@ -49,12 +49,8 @@
                         </div>
                     </div>
                     <h4>5-Day Forecast:</h4>
-                    <div id="forecast-card" class="card text-white bg-primary mb-3" style="max-width: 10rem;">
-                        <div class="card-body">
-                            <h5 id="card-title-date" class="card-title">Date</h5>
-                            <p id="temperature">Temp:</p>
-                            <p id="humidity">Humidity:</p>
-                        </div>
+                    <div class="container">
+                        <div id="forecast-row" class="row"></div>
                     </div>
                 </div>
             </div>

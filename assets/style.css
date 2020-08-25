@@ -28,6 +28,10 @@ header {
     margin-bottom: 15px;
 }
 
+#forecast-col {
+    padding-left: 0 !important;
+}
+
 #forecast-card {
     width: auto;
 }
