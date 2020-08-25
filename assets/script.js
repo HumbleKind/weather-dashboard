@@ -53,7 +53,7 @@ function getWeather(cityName) {
             for (var i = 1; i < 6; i++) {
 
                 var forecastDate = $("<h5>").attr("id", "card-title-date-" + [i]).addClass("card-title").text("Date");
-                var forecastTemp = $("<p>").attr("id", "temperature").text("Temp:");
+                var forecastTemp = $("<p>").attr("id", "temp-" + [i]).text("Temp:");
                 var forecastHumidity = $("<p>").attr("id", "humidity").text("Humidity:");
 
                 var forecastCardBody = $("<div>").addClass("card-body");
@@ -71,8 +71,8 @@ function getWeather(cityName) {
                 var forecastWeatherIcon = "http://openweathermap.org/img/wn/" + response.daily[i].weather[0].icon + ".png";
                 $("#card-title-date-" + [i]).text(forecastDateValue).append("<img src=" + forecastWeatherIcon + " />");
                 
-                // $("#card-title-date").text(currentDate).append("<img src=" + weatherIcon + " />");
-                // $("#temperature").text("Temp: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
+                $("#temp-" + [i]).text("Temp: " + (((response.daily[i].temp.max - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
+
                 // $("#humidity").text("Humidity: " + response.current.humidity + "%");
             }
 
