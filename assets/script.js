@@ -54,7 +54,7 @@ function getWeather(cityName) {
 
                 var forecastDate = $("<h5>").attr("id", "card-title-date-" + [i]).addClass("card-title").text("Date");
                 var forecastTemp = $("<p>").attr("id", "temp-" + [i]).text("Temp:");
-                var forecastHumidity = $("<p>").attr("id", "humidity").text("Humidity:");
+                var forecastHumidity = $("<p>").attr("id", "humidity-" + [i]).text("Humidity:");
 
                 var forecastCardBody = $("<div>").addClass("card-body");
                 forecastCardBody.append(forecastDate, forecastTemp, forecastHumidity);
@@ -73,7 +73,7 @@ function getWeather(cityName) {
                 
                 $("#temp-" + [i]).text("Temp: " + (((response.daily[i].temp.max - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
 
-                // $("#humidity").text("Humidity: " + response.current.humidity + "%");
+                $("#humidity-" + [i]).text("Humidity: " + response.daily[i].humidity + "%");
             }
 
         });
