@@ -32,6 +32,7 @@ function getWeather(cityName) {
             url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "&exclude={part}&appid=87f01c7c0ae95c2907ec5b879ab8afaa",
             method: "GET"
         }).then(function(response) {
+            console.log(response);
 
             // current date in mm/dd/yyyy format
             var currentDate = (new Date()).toLocaleDateString('en-US');
@@ -67,7 +68,8 @@ function getWeather(cityName) {
                 $("#forecast-row").append(forecastCol);
 
                 var forecastDateValue = (new Date((response.daily[i].dt)*1000)).toLocaleDateString('en-US');
-                $("#card-title-date-" + [i]).text(forecastDateValue);
+                var forecastWeatherIcon = "http://openweathermap.org/img/wn/" + response.daily[i].weather[0].icon + ".png";
+                $("#card-title-date-" + [i]).text(forecastDateValue).append("<img src=" + forecastWeatherIcon + " />");
                 
                 // $("#card-title-date").text(currentDate).append("<img src=" + weatherIcon + " />");
                 // $("#temperature").text("Temp: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
