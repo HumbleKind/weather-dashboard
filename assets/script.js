@@ -1,22 +1,45 @@
 
 var citySearch = $("#search-city-form");
 
+// ** 
+var searchHistory = JSON.parse(window.localStorage.getItem("history")) || [];
+
+// for loop create list item with buttons showing localStorage
+
 citySearch.on("submit", function(event) {
     event.preventDefault();
 
     // gets entered search city name
     var cityName = $("#city-name").val();
 
+    // ** 
+    while (searchHistory.indexOf(cityName) === -1) {
+        searchHistory.push(cityName);
+        window.localStorage.setItem("history", JSON.stringify(searchHistory));
+    }
+
     // passes city name to results function
     getWeather(cityName);
     
+    // **
+    var cityBtn = $("<button>").addClass("btn city-btn").val(cityName).text(cityName);
+
     // adds searched city name to the top of the history list
-    $("#search-history").prepend($("<li>").addClass("list-group-item").text(cityName));
+    // $("#search-history").prepend($("<li>").addClass("list-group-item").text(cityName)); // create each list item as a button with value of cityName
+    $("#search-history").prepend($("<li>").addClass("list-group-item").append(cityBtn));
 
     // clears city search input and 5-day forecast cards
     $("#city-name").val("");
     $("#uvi").empty();
     $("#forecast-row").empty();
+});
+
+// **
+$(".city-btn").on("click", function() {
+    console.log("I was clicked!");
+    var value = $(this).val();
+    console.log(value);
+    getWeather(value);
 });
 
 function getWeather(cityName) {
@@ -46,7 +69,7 @@ function getWeather(cityName) {
             $("#card-title-city").text(cityName + " " + "(" + currentDate + ")").append("<img src=" + weatherIcon + " />");
 
             // current weather results - temperature, humidity, wind speed
-            $("#current-temperature").text("Temperature: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉");
+            $("#current-temperature").text("Temperature: " + (((response.current.temp - 273.15) * 1.8) + 32).toFixed(1) + " ℉"); // could refactor this within the API call
             $("#current-humidity").text("Humidity: " + response.current.humidity + "%");
             $("#current-wind-speed").text("Wind Speed: " + response.current.wind_speed + " MPH");
 
@@ -66,7 +89,7 @@ function getWeather(cityName) {
                 forecastCardBody.append(forecastDate, forecastTemp, forecastHumidity);
 
                 // creates forecast card, and appends card body values
-                var forecastCard = $("<div>").attr("id", "forecast-card").addClass("card text-white bg-primary mb-3").attr("style", "max-width: 10rem;");
+                var forecastCard = $("<div>").attr("id", "forecast-card").addClass("card text-white bg-primary mb-3").attr("style", "max-width: 10rem;"); // just add class ... put style in CSS
                 forecastCard.append(forecastCardBody);
 
                 // creates forecast column, and appends forecast card
