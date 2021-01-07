@@ -22,16 +22,19 @@ citySearch.on("submit", function(event) {
     getWeather(cityName);
     
     // **
-    var cityBtn = $("<button>").addClass("btn city-btn").val(cityName).text(cityName);
+    var cityBtn = $("<button>").addClass("btn city-btn").val(cityName).text(cityName).on("click", () => {clearValues(); getWeather(cityName)});
 
     // adds searched city name to the top of the history list
     // $("#search-history").prepend($("<li>").addClass("list-group-item").text(cityName)); // create each list item as a button with value of cityName
     $("#search-history").prepend($("<li>").addClass("list-group-item").append(cityBtn));
 
     // clears city search input and 5-day forecast cards
-    $("#city-name").val("");
-    $("#uvi").empty();
-    $("#forecast-row").empty();
+    function clearValues() {
+        $("#city-name").val("");
+        $("#uvi").empty();
+        $("#forecast-row").empty();
+    }
+    clearValues();
 });
 
 // **
