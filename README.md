@@ -2,6 +2,6 @@
 
 [Deployed Project Link](https://humblekind.github.io/weather-dashboard/)
 
-Using the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities, this weather dashboard runs in the browser and features dynamically updated HTML and CSS.
+An [OpenWeather API](https://openweathermap.org/api) app that retrieves and displays dynamically updated HTML/ CSS weather data for cities.
 
 ![Weather Dashboard](assets/screen-shot_1.png)
